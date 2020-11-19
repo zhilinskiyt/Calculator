@@ -11,7 +11,7 @@ let numbers = document.querySelectorAll('.number'),
 for (let i = 0; i < numbers.length; i++) {
     let number = numbers[i];
     number.addEventListener('click', function (e) {
-        numberPress(parseInt(e.target.textContent, 10));
+        numberPress(e.target.textContent.trim());
     });
 };
 
@@ -19,7 +19,7 @@ for (let i = 0; i < numbers.length; i++) {
 for (let i = 0; i < operations.length; i++) {
     let operator = operations[i];
     operator.addEventListener('click', function (e) {
-        operation(e.target.textContent);
+        operation(e.target.textContent.trim());
     });
 };
 
@@ -69,7 +69,7 @@ function operation(op) {
         display.value = MemoryCurrentNumber;
         MemoryPendingOperation = op;
     };
-    console.log('клик по кнопке с операцией  ' + op + '!');
+    console.log(op);
 };
 
 function decimal(argument){
