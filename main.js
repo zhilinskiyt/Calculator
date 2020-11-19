@@ -50,7 +50,7 @@ function numberPress(number) {
 function operation(op) {
     localOperationMemory = display.value;
     
-    if (MemoryNewNumber) {
+    if (MemoryNewNumber && MemoryPendingOperation !== '=') {
         display.value = MemoryCurrentNumber
     } else {
         MemoryNewNumber = true;
@@ -73,13 +73,42 @@ function operation(op) {
 };
 
 function decimal(argument){
-    console.log('клик по кнопке с точкой'); 
+    let localDecimalMemory = display.value
+
+
+    if(MemoryNewNumber) {
+        localDecimalMemory = '0.'
+        MemoryNewNumber = false;
+    } else {
+        if (localDecimalMemory.indexOf('.') === -1 ) {
+            localDecimalMemory += '.';
+        };
+    };
+
+    display.value = localDecimalMemory;
 };
 
-function clear(id){
-    console.log('Клик по кнопке ' + id + "!");
+function clear(id) {
+    if (id === 'ce') {
+        display.value = '0';
+        MemoryNewNumber = true;
+    } else if (id === 'c') {
+        display.value = '0';
+        MemoryNewNumber = true;
+        MemoryNewNumber = 0;
+        MemoryPendingOperation = '';
+    }
 };
 
-// function result(argument) {
-//     console.log('клик по кнопке равно'); 
+
+// function clear(id) {
+//     if(id === "ce") {
+//         display.value = "0" // здесь строка? или число?
+//         MemoryNewNumber = true;
+//     } else if(id === "c") {
+//         display.value = "0" 
+//         MemoryNewNumber = true;
+//         MemoryCurrentNumber = 0,
+//         MemoryPendingOperation = "";
+//     }
 // };
